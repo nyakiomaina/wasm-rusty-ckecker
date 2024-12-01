@@ -122,7 +122,7 @@ impl GameEngine {
 
     fn crown_piece(&mut self, coord: Coordinate) {
         if let Some(piece) = &mut self.board[coord.0][coord.1] {
-            piece.crown();
+            *piece = GamePiece::crowned(piece.clone());
         }
     }
 
@@ -154,5 +154,13 @@ impl GameEngine {
             }
         }
         false
+    }
+    pub fn current_turn(&self) -> PieceColor {
+        self.current_turn
+    }
+
+    pub fn get_piece(&self, coord: Coordinate) -> Result<Option<GamePiece>, Box<dyn std::error::Error>> {
+        // Your implementation here
+        Ok(None)
     }
 }
